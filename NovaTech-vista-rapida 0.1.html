@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaTech | Instituto Superior de Tecnología</title>
+  <meta name="description" content="Instituto Superior NovaTech: programas técnicos en tecnología, redes e industria. Regístrate y da el siguiente paso.">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 (framework CSS requerido por el caso práctico) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Hoja de estilos EXTERNA propia -->
+  <style>
+/* =========================================================
+   NovaTech — hoja de estilos externa principal
+   Selectores, propiedades y valores CSS para tipografía,
+   color, espaciado, bordes, fondos y distribución visual.
+   ========================================================= */
+
+:root {
+  --color-navy: #0f1b2d;
+  --color-navy-soft: #17273f;
+  --color-cream: #f7f5f0;
+  --color-amber: #e8a33d;
+  --color-teal: #2c7873;
+  --color-text: #1a1a1a;
+  --color-muted: #6b7280;
+  --radius-base: 10px;
+  --shadow-card: 0 10px 30px rgba(15, 27, 45, 0.12);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-cream);
+  line-height: 1.55;
+}
+
+h1, h2, h3, .brand-mark {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5em;
+}
+
+p { margin: 0 0 1em; }
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Botones (se apoyan en Bootstrap, con acento propio) ---------- */
+.btn-primary {
+  background-color: var(--color-amber);
+  border-color: var(--color-amber);
+  color: var(--color-navy);
+  font-weight: 600;
+  border-radius: 8px;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #d6912e;
+  border-color: #d6912e;
+  color: var(--color-navy);
+}
+.btn-outline-light {
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* ================= HEADER / NAV ================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-navy);
+}
+.nav-inner { padding: 14px 24px; }
+.brand-mark {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.brand-accent { color: var(--color-amber); }
+
+.navbar-nav .nav-link {
+  color: #d7dde6;
+  font-weight: 500;
+  padding: 10px 14px !important;
+}
+.navbar-nav .nav-link:hover { color: #fff; }
+
+.btn-nav-cta {
+  background: var(--color-amber);
+  color: var(--color-navy) !important;
+  border-radius: 6px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.navbar-toggler {
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+}
+.toggler-bar {
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  display: block;
+}
+
+/* ================= HERO ================= */
+.hero {
+  background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-soft) 100%);
+  color: #fff;
+  padding: 72px 0 88px;
+}
+
+/* Requisito: CSS Grid */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-kicker {
+  color: var(--color-amber);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  line-height: 1.15;
+}
+
+.hero-lead {
+  color: #c7cfdb;
+  max-width: 46ch;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 28px 0 40px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  flex-wrap: wrap;
+}
+.hero-stats dt {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--color-amber);
+  font-weight: 700;
+}
+.hero-stats dd {
+  margin: 0;
+  color: #c7cfdb;
+  font-size: 0.85rem;
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 280px;
+}
+.hero-shape {
+  position: absolute;
+  inset: 20px 10% 0 10%;
+  background: rgba(232, 163, 61, 0.14);
+  border: 1px solid rgba(232, 163, 61, 0.35);
+  border-radius: 18px;
+}
+.hero-card {
+  position: relative;
+  background: #12192a;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 18px 20px 22px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+  width: 230px;
+}
+.hero-card-1 { margin-left: 6%; transform: translateY(20px); }
+.hero-card-2 { margin-left: 38%; margin-top: 18px; }
+.hero-card-label {
+  display: block;
+  font-size: 0.72rem;
+  color: #93a0b4;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.hero-card strong {
+  display: block;
+  font-size: 1.02rem;
+  padding-right: 40px;
+}
+.hero-card-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(232, 163, 61, 0.16);
+  color: var(--color-amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-card-icon svg { width: 19px; height: 19px; }
+
+/* ================= SECCIÓN GENÉRICA ================= */
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+.section-title--light { color: #fff; }
+.section-subtitle {
+  color: var(--color-muted);
+  max-width: 60ch;
+  margin-bottom: 36px;
+}
+
+/* ================= NOSOTROS (Flexbox) ================= */
+.why { padding: 80px 0; }
+
+/* Requisito: Flexbox */
+.why-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.why-item {
+  flex: 1 1 220px;
+  background: #fff;
+  border-radius: var(--radius-base);
+  padding: 26px 22px;
+  box-shadow: var(--shadow-card);
+}
+.why-icon {
+  font-family: var(--font-display);
+  color: var(--color-amber);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.why-item h3 { font-size: 1.05rem; }
+.why-item p { color: var(--color-muted); margin: 0; font-size: 0.92rem; }
+
+/* ================= PROGRAMAS (Grid) ================= */
+.programas { padding: 80px 0; background: #fff; }
+
+.programas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.programa-card {
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius-base);
+  padding: 22px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.programa-card:hover {
+  border-color: var(--color-amber);
+  transform: translateY(-3px);
+}
+.programa-badge {
+  display: inline-block;
+  background: rgba(44, 120, 115, 0.12);
+  color: var(--color-teal);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.programa-card h3 { font-size: 1.1rem; }
+.programa-card p { color: var(--color-muted); font-size: 0.9rem; }
+.programa-duracion {
+  font-size: 0.8rem;
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+/* ================= TESTIMONIO ================= */
+.testimonio {
+  background: var(--color-teal);
+  color: #fff;
+  padding: 56px 0;
+}
+.testimonio-inner { max-width: 720px; text-align: center; margin: 0 auto; }
+.testimonio blockquote {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin: 0 0 14px;
+}
+.testimonio-autor { color: rgba(255,255,255,0.8); font-size: 0.85rem; margin: 0; }
+
+/* ================= REGISTRO ================= */
+.registro {
+  background: var(--color-navy);
+  color: #fff;
+  padding: 80px 0;
+}
+.registro-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+}
+.registro-intro p { color: #c7cfdb; }
+.registro-nota {
+  font-size: 0.85rem;
+  color: var(--color-amber);
+}
+
+.registro-form {
+  background: #fff;
+  color: var(--color-text);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+}
+.registro-form .form-label { font-weight: 600; font-size: 0.9rem; }
+
+.resultado-envio {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  display: none;
+}
+.resultado-envio.exito {
+  display: block;
+  background: rgba(44, 120, 115, 0.12);
+  color: var(--color-teal);
+  border: 1px solid rgba(44, 120, 115, 0.3);
+}
+.resultado-envio.error {
+  display: block;
+  background: rgba(200, 60, 60, 0.1);
+  color: #a4302f;
+  border: 1px solid rgba(200, 60, 60, 0.3);
+}
+
+/* ================= FOOTER ================= */
+.site-footer { background: #0b1420; color: #c7cfdb; padding: 56px 0 0; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 32px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-grid h3 { color: #fff; font-size: 1rem; }
+.footer-grid ul { list-style: none; padding: 0; margin: 0; }
+.footer-grid li { margin-bottom: 8px; }
+.footer-grid a:hover { color: var(--color-amber); }
+.footer-bottom {
+  padding: 18px 0;
+  font-size: 0.8rem;
+  color: #7f8ba0;
+}
+
+/* ================= RESPONSIVE (maquetación adaptable) ================= */
+@media (max-width: 900px) {
+  .hero-grid, .registro-grid { grid-template-columns: 1fr; }
+  .hero-visual { min-height: 200px; margin-top: 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .why-item { flex: 1 1 100%; }
+}
+
+</style>
+
+  <!-- Hoja de estilos INTERNA: ajustes puntuales de esta página que no requieren
+       vivir en el archivo externo (ver justificación en el informe técnico) -->
+  <style>
+    /* Ajuste específico de esta vista: separación del ancla del menú fijo */
+    section[id] { scroll-margin-top: 84px; }
+    /* Contador de caracteres del mensaje del formulario, solo se usa aquí */
+    #mensajeContador { font-size: 0.8rem; color: var(--color-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAV ===================== -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg" aria-label="Navegación principal">
+      <div class="container nav-inner">
+        <a class="navbar-brand" href="#inicio">
+          <span class="brand-mark">Nova<span class="brand-accent">Tech</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" id="menuToggle" aria-controls="menuPrincipal"
+                aria-expanded="false" aria-label="Abrir menú">
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="#programas">Programas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link btn-nav-cta" href="#registro">Regístrate</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section id="inicio" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="hero-kicker">Admisión abierta 2026-II</p>
+          <h1>Aprende un oficio técnico que el mercado ya está pidiendo.</h1>
+          <p class="hero-lead">
+            En NovaTech formamos técnicos en tecnología, redes y procesos industriales,
+            con talleres prácticos y docentes que siguen trabajando en el rubro.
+          </p>
+          <div class="hero-actions">
+            <a href="#registro" class="btn btn-primary btn-lg">Reservar una vacante</a>
+            <a href="#programas" class="btn btn-outline-light btn-lg">Ver programas</a>
+          </div>
+          <dl class="hero-stats">
+            <div><dt>18</dt><dd>años formando técnicos</dd></div>
+            <div><dt>86%</dt><dd>de egresados trabajando en su rubro</dd></div>
+            <div><dt>12</dt><dd>empresas aliadas para prácticas</dd></div>
+          </dl>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-card hero-card-1">
+            <span class="hero-card-label">Próxima clase</span>
+            <strong>Redes — Lab. 3</strong>
+            <span class="hero-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5" cy="6" r="2.2"></circle>
+                <circle cx="19" cy="6" r="2.2"></circle>
+                <circle cx="12" cy="18" r="2.2"></circle>
+                <path d="M6.9 7.3 10.4 16.4"></path>
+                <path d="M17.1 7.3 13.6 16.4"></path>
+                <path d="M7.2 6h9.6"></path>
+              </svg>
+            </span>
+          </div>
+          <div class="hero-card hero-card-2">
+            <span class="hero-card-label">Matrícula</span>
+            <strong>Vacantes limitadas</strong>
+            <span class="hero-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="3.5" width="14" height="17" rx="2"></rect>
+                <path d="M9 3.5V2.8a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v.7"></path>
+                <path d="m8.5 12.3 2.2 2.2 4.3-4.6"></path>
+              </svg>
+            </span>
+          </div>
+          <div class="hero-shape"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NOSOTROS / POR QUÉ (Flexbox) ===================== -->
+    <section id="nosotros" class="why">
+      <div class="container">
+        <h2 class="section-title">¿Por qué estudiar en NovaTech?</h2>
+        <p class="section-subtitle">Cuatro razones que nuestros propios egresados repiten más.</p>
+
+        <!-- Requisito: Flexbox en al menos una sección -->
+        <div class="why-flex">
+          <article class="why-item">
+            <div class="why-icon" aria-hidden="true">01</div>
+            <h3>Talleres, no solo teoría</h3>
+            <p>Más del 60% de las horas de clase son prácticas en laboratorio o taller.</p>
+          </article>
+          <article class="why-item">
+            <div class="why-icon" aria-hidden="true">02</div>
+            <h3>Horarios flexibles</h3>
+            <p>Turnos mañana, tarde y noche pensados para quienes ya trabajan.</p>
+          </article>
+          <article class="why-item">
+            <div class="why-icon" aria-hidden="true">03</div>
+            <h3>Bolsa de trabajo activa</h3>
+            <p>Convenios con empresas del sector para prácticas y primer empleo.</p>
+          </article>
+          <article class="why-item">
+            <div class="why-icon" aria-hidden="true">04</div>
+            <h3>Acompañamiento real</h3>
+            <p>Un tutor asignado desde el primer ciclo hasta la titulación.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROGRAMAS (Grid + Bootstrap cards) ===================== -->
+    <section id="programas" class="programas">
+      <div class="container">
+        <h2 class="section-title">Nuestros programas</h2>
+        <p class="section-subtitle">Elige la carrera técnica que se acerca a lo que ya te interesa.</p>
+
+        <!-- Requisito: CSS Grid en al menos una sección.
+             Estas 4 tarjetas son contenido base en HTML; script.js las
+             reemplaza dinámicamente recorriendo el array "programas"
+             (demuestra manipulación del DOM sin depender solo de JS). -->
+        <div class="programas-grid" id="programasGrid">
+          <article class="programa-card">
+            <span class="programa-badge">Presencial / mixta</span>
+            <h3>Desarrollo de Software</h3>
+            <p>Programación web, bases de datos y buenas prácticas de desarrollo.</p>
+            <p class="programa-duracion">6 semestres</p>
+          </article>
+          <article class="programa-card">
+            <span class="programa-badge">Presencial</span>
+            <h3>Redes y Telecomunicaciones</h3>
+            <p>Diseño, instalación y administración de redes empresariales.</p>
+            <p class="programa-duracion">5 semestres</p>
+          </article>
+          <article class="programa-card">
+            <span class="programa-badge">Presencial / mixta</span>
+            <h3>Administración de Empresas</h3>
+            <p>Gestión, finanzas y liderazgo de equipos para pequeñas y medianas empresas.</p>
+            <p class="programa-duracion">5 semestres</p>
+          </article>
+          <article class="programa-card">
+            <span class="programa-badge">Presencial</span>
+            <h3>Mecatrónica Industrial</h3>
+            <p>Automatización, control de procesos y mantenimiento industrial.</p>
+            <p class="programa-duracion">6 semestres</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIO ===================== -->
+    <section class="testimonio">
+      <div class="container testimonio-inner">
+        <blockquote>
+          “Entré sin saber nada de redes. Hoy administro la infraestructura de una empresa de
+          logística en Lima.”
+        </blockquote>
+        <p class="testimonio-autor">— Egresado, Redes y Telecomunicaciones, promoción 2023</p>
+      </div>
+    </section>
+
+    <!-- ===================== REGISTRO ===================== -->
+    <section id="registro" class="registro">
+      <div class="container registro-grid">
+        <div class="registro-intro">
+          <h2 class="section-title section-title--light">Regístrate para recibir información</h2>
+          <p>
+            Completa el formulario y un asesor de admisión te escribe en menos de 24 horas
+            con el detalle de horarios, costos y próximas fechas de inicio.
+          </p>
+          <p class="registro-nota" id="metodoEnvioNota">
+            Método de envío simulado: <strong>POST</strong>
+          </p>
+        </div>
+
+        <form id="formRegistro" class="registro-form" novalidate>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre completo</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. Ana Torres" required minlength="3">
+            <div class="invalid-feedback" id="errorNombre">Ingresa tu nombre completo (mínimo 3 caracteres).</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+            <div class="invalid-feedback" id="errorCorreo">Ingresa un correo electrónico válido.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="9 dígitos" required pattern="[0-9]{9}">
+            <div class="invalid-feedback" id="errorTelefono">Ingresa un número de 9 dígitos, solo números.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="programa" class="form-label">Programa de interés</label>
+            <select class="form-select" id="programa" name="programa" required>
+              <option value="" selected disabled>Selecciona un programa</option>
+              <option value="Desarrollo de Software">Desarrollo de Software</option>
+              <option value="Redes y Telecomunicaciones">Redes y Telecomunicaciones</option>
+              <option value="Administración de Empresas">Administración de Empresas</option>
+              <option value="Mecatrónica Industrial">Mecatrónica Industrial</option>
+            </select>
+            <div class="invalid-feedback" id="errorPrograma">Selecciona un programa.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="horario" class="form-label">Horario preferido</label>
+            <select class="form-select" id="horario" name="horario">
+              <option value="Mañana">Mañana</option>
+              <option value="Tarde">Tarde</option>
+              <option value="Noche">Noche</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Cuéntanos brevemente qué buscas (opcional)</label>
+            <textarea class="form-control" id="mensaje" name="mensaje" rows="3" maxlength="200"></textarea>
+            <div id="mensajeContador">0 / 200</div>
+          </div>
+
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="terminos" name="terminos" required>
+            <label class="form-check-label" for="terminos">
+              Acepto los términos y la política de tratamiento de datos.
+            </label>
+            <div class="invalid-feedback" id="errorTerminos">Debes aceptar los términos para continuar.</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg w-100" id="btnEnviar">Enviar registro</button>
+
+          <div id="resultadoEnvio" class="resultado-envio" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="contacto" class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <span class="brand-mark">Nova<span class="brand-accent">Tech</span></span>
+        <p>Instituto Superior de Tecnología. Formamos técnicos listos para trabajar desde el primer día.</p>
+      </div>
+      <div>
+        <h3>Enlaces</h3>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#programas">Programas</a></li>
+          <li><a href="#registro">Regístrate</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <address>
+          Av. Siempre Viva 123, Lima<br>
+          (01) 555 0192<br>
+          informes@novatech.edu.pe
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; <span id="anioActual"></span> NovaTech. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS bundle -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <!-- Script propio -->
+  <script>
+/* =========================================================
+   NovaTech — script.js
+   Interactividad general, generación dinámica de tarjetas,
+   validación de formulario y simulación de envío GET/POST.
+   Integrado como script EXTERNO (ver <script src="js/script.js">).
+   ========================================================= */
+
+// ---------- 1) VARIABLES Y TIPOS DE DATO ----------
+// Array de objetos: cada objeto agrupa datos de un programa (estructura de datos)
+const programas = [
+  {
+    nombre: "Desarrollo de Software",
+    duracion: "6 semestres",
+    modalidad: "Presencial / mixta",
+    descripcion: "Programación web, bases de datos y buenas prácticas de desarrollo.",
+  },
+  {
+    nombre: "Redes y Telecomunicaciones",
+    duracion: "5 semestres",
+    modalidad: "Presencial",
+    descripcion: "Diseño, instalación y administración de redes empresariales.",
+  },
+  {
+    nombre: "Administración de Empresas",
+    duracion: "5 semestres",
+    modalidad: "Presencial / mixta",
+    descripcion: "Gestión, finanzas y liderazgo de equipos para pequeñas y medianas empresas.",
+  },
+  {
+    nombre: "Mecatrónica Industrial",
+    duracion: "6 semestres",
+    modalidad: "Presencial",
+    descripcion: "Automatización, control de procesos y mantenimiento industrial.",
+  },
+];
+
+// Booleano: controla si el menú móvil está abierto
+let menuAbierto = false;
+
+// ---------- 2) FUNCIONES + MANIPULACIÓN DEL DOM ----------
+
+// Función con arrow function: crea el HTML de una tarjeta de programa
+const crearTarjetaPrograma = (programa) => {
+  const card = document.createElement("article");
+  card.className = "programa-card";
+  card.innerHTML = `
+    <span class="programa-badge">${programa.modalidad}</span>
+    <h3>${programa.nombre}</h3>
+    <p>${programa.descripcion}</p>
+    <p class="programa-duracion">${programa.duracion}</p>
+  `;
+  return card;
+};
+
+// Función declarada: recorre el array con un FOR (estructura de control)
+// e inserta cada tarjeta en el DOM
+function renderizarProgramas() {
+  const contenedor = document.getElementById("programasGrid");
+  if (!contenedor) return; // operador lógico de guarda
+
+  contenedor.innerHTML = ""; // limpia las tarjetas estáticas del HTML
+                              // antes de reconstruirlas dinámicamente
+  for (let i = 0; i < programas.length; i++) {
+    const tarjeta = crearTarjetaPrograma(programas[i]);
+    contenedor.appendChild(tarjeta);
+  }
+}
+
+// ---------- 3) EVENTOS: carga inicial de la página ----------
+document.addEventListener("DOMContentLoaded", () => {
+  renderizarProgramas();
+
+  const anio = document.getElementById("anioActual");
+  if (anio) anio.textContent = new Date().getFullYear();
+});
+
+// ---------- 4) MENÚ MÓVIL (evento click + manipulación de clases) ----------
+const menuToggle = document.getElementById("menuToggle");
+const menuPrincipal = document.getElementById("menuPrincipal");
+
+if (menuToggle && menuPrincipal) {
+  menuToggle.addEventListener("click", () => {
+    menuAbierto = !menuAbierto; // operador de asignación con negación lógica
+    menuPrincipal.classList.toggle("show", menuAbierto);
+    menuToggle.setAttribute("aria-expanded", String(menuAbierto));
+  });
+}
+
+// ---------- 5) CONTADOR DE CARACTERES (evento input) ----------
+const mensaje = document.getElementById("mensaje");
+const mensajeContador = document.getElementById("mensajeContador");
+
+if (mensaje && mensajeContador) {
+  mensaje.addEventListener("input", () => {
+    const longitud = mensaje.value.length;
+    mensajeContador.textContent = `${longitud} / 200`;
+  });
+}
+
+// ---------- 6) VALIDACIÓN DEL FORMULARIO ----------
+
+// Objeto que centraliza expresiones y reglas de validación
+const reglas = {
+  correo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  telefono: /^[0-9]{9}$/,
+};
+
+// Función pura: valida un campo de texto según su tipo (switch = estructura de control)
+function validarCampo(tipo, valor) {
+  switch (tipo) {
+    case "nombre":
+      return valor.trim().length >= 3;
+    case "correo":
+      return reglas.correo.test(valor.trim());
+    case "telefono":
+      return reglas.telefono.test(valor.trim());
+    case "programa":
+      return valor !== "";
+    case "terminos":
+      return valor === true;
+    default:
+      return true;
+  }
+}
+
+// Muestra u oculta el mensaje de error de un campo (manipulación del DOM)
+function marcarCampo(input, esValido) {
+  if (esValido) {
+    input.classList.remove("is-invalid");
+    input.classList.add("is-valid");
+  } else {
+    input.classList.remove("is-valid");
+    input.classList.add("is-invalid");
+  }
+}
+
+const formRegistro = document.getElementById("formRegistro");
+const resultadoEnvio = document.getElementById("resultadoEnvio");
+
+if (formRegistro) {
+  formRegistro.addEventListener("submit", function (evento) {
+    evento.preventDefault(); // evita el envío real: aquí se SIMULA
+
+    // Referencias a los campos
+    const nombre = document.getElementById("nombre");
+    const correo = document.getElementById("correo");
+    const telefono = document.getElementById("telefono");
+    const programa = document.getElementById("programa");
+    const terminos = document.getElementById("terminos");
+
+    // Validación de cada campo, acumulando el resultado con AND lógico
+    const nombreValido = validarCampo("nombre", nombre.value);
+    const correoValido = validarCampo("correo", correo.value);
+    const telefonoValido = validarCampo("telefono", telefono.value);
+    const programaValido = validarCampo("programa", programa.value);
+    const terminosValido = validarCampo("terminos", terminos.checked);
+
+    marcarCampo(nombre, nombreValido);
+    marcarCampo(correo, correoValido);
+    marcarCampo(telefono, telefonoValido);
+    marcarCampo(programa, programaValido);
+    terminos.classList.toggle("is-invalid", !terminosValido);
+
+    const formularioValido =
+      nombreValido && correoValido && telefonoValido && programaValido && terminosValido;
+
+    // Condicional if / else (estructura de control)
+    if (!formularioValido) {
+      resultadoEnvio.textContent =
+        "Revisa los campos marcados en rojo antes de enviar el formulario.";
+      resultadoEnvio.className = "resultado-envio error";
+      return;
+    }
+
+    // Construye el objeto con los datos, listo para enviar
+    const datosFormulario = {
+      nombre: nombre.value.trim(),
+      correo: correo.value.trim(),
+      telefono: telefono.value.trim(),
+      programa: programa.value,
+      horario: document.getElementById("horario").value,
+      mensaje: mensaje.value.trim(),
+    };
+
+    enviarRegistro(datosFormulario);
+  });
+}
+
+// ---------- 7) SIMULACIÓN DE ENVÍO GET / POST ----------
+// En un backend real, este formulario enviaría los datos con method="POST"
+// a un endpoint del servidor. Aquí se simula esa llamada con fetch() para
+// mostrar cómo cambiaría la solicitud según el método usado.
+function enviarRegistro(datos) {
+  const metodo = "POST"; // el caso práctico permite simular GET o POST; se eligió POST
+                          // porque el formulario envía datos sensibles de contacto
+
+  // Simulación de una petición POST: los datos viajan en el "body",
+  // no quedan expuestos en la URL como ocurriría con GET.
+  console.log(`Simulando solicitud ${metodo} → /api/registro`);
+  console.log("Cuerpo de la solicitud (JSON):", JSON.stringify(datos, null, 2));
+
+  // Si se quisiera simular GET, los mismos datos viajarían así en la URL:
+  const queryGET = new URLSearchParams(datos).toString();
+  console.log(`Equivalente por GET sería: /api/registro?${queryGET}`);
+
+  // Simula la latencia de red con setTimeout antes de confirmar al usuario
+  const btnEnviar = document.getElementById("btnEnviar");
+  btnEnviar.disabled = true;
+  btnEnviar.textContent = "Enviando...";
+
+  setTimeout(() => {
+    resultadoEnvio.textContent =
+      `¡Listo, ${datos.nombre.split(" ")[0]}! Registramos tu interés en ${datos.programa}. ` +
+      "Un asesor te escribirá a tu correo en menos de 24 horas.";
+    resultadoEnvio.className = "resultado-envio exito";
+
+    formRegistro.reset();
+    mensajeContador.textContent = "0 / 200";
+    document
+      .querySelectorAll(".is-valid, .is-invalid")
+      .forEach((el) => el.classList.remove("is-valid", "is-invalid"));
+
+    btnEnviar.disabled = false;
+    btnEnviar.textContent = "Enviar registro";
+  }, 900);
+}
+
+</script>
+</body>
+</html>
