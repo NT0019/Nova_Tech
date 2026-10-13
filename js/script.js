@@ -1,12 +1,3 @@
-/* =========================================================
-   NovaTech — script.js
-   Interactividad general, generación dinámica de tarjetas,
-   validación de formulario y simulación de envío GET/POST.
-   Integrado como script EXTERNO (ver <script src="js/script.js">).
-   ========================================================= */
-
-// ---------- 1) VARIABLES Y TIPOS DE DATO ----------
-// Array de objetos: cada objeto agrupa datos de un programa (estructura de datos)
 const programas = [
   {
     nombre: "Desarrollo de Software",
@@ -47,12 +38,8 @@ const programas = [
   },
 ];
 
-// Booleano: controla si el menú móvil está abierto
 let menuAbierto = false;
 
-// ---------- 2) FUNCIONES + MANIPULACIÓN DEL DOM ----------
-
-// Función con arrow function: crea el HTML de una tarjeta de programa
 const crearTarjetaPrograma = (programa) => {
   const card = document.createElement("article");
   card.className = "programa-card";
@@ -70,21 +57,17 @@ const crearTarjetaPrograma = (programa) => {
   return card;
 };
 
-// Función declarada: recorre el array con un FOR (estructura de control)
-// e inserta cada tarjeta en el DOM
 function renderizarProgramas() {
   const contenedor = document.getElementById("programasGrid");
-  if (!contenedor) return; // operador lógico de guarda
+  if (!contenedor) return;
 
-  contenedor.innerHTML = ""; // limpia las tarjetas estáticas del HTML
-                              // antes de reconstruirlas dinámicamente
+  contenedor.innerHTML = "";
   for (let i = 0; i < programas.length; i++) {
     const tarjeta = crearTarjetaPrograma(programas[i]);
     contenedor.appendChild(tarjeta);
   }
 }
 
-// ---------- 3) EVENTOS: carga inicial de la página ----------
 document.addEventListener("DOMContentLoaded", () => {
   renderizarProgramas();
 
@@ -92,22 +75,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (anio) anio.textContent = new Date().getFullYear();
 });
 
-// ---------- 4) MENÚ MÓVIL (evento click + manipulación de clases) ----------
 const menuToggle = document.getElementById("menuToggle");
 const menuPrincipal = document.getElementById("menuPrincipal");
 
 if (menuToggle && menuPrincipal) {
   menuToggle.addEventListener("click", () => {
-    menuAbierto = !menuAbierto; // operador de asignación con negación lógica
+    menuAbierto = !menuAbierto;
     menuPrincipal.classList.toggle("show", menuAbierto);
     menuToggle.setAttribute("aria-expanded", String(menuAbierto));
   });
 }
 
-// ---------- 4b) INDICADOR DESLIZANTE DEL MENÚ (evento mouseenter/mouseleave) ----------
 const navIndicator = document.getElementById("navIndicator");
 const menuLista = document.getElementById("menuLista");
-// Solo los enlaces normales del menú (se excluye el botón "Regístrate", que ya resalta solo)
 const enlacesMenu = menuLista
   ? menuLista.querySelectorAll(".nav-link:not(.btn-nav-cta)")
   : [];
@@ -120,7 +100,6 @@ function moverIndicador(enlace) {
   navIndicator.style.opacity = "1";
 }
 
-// Solo se activa en escritorio (breakpoint lg de Bootstrap), donde el menú es horizontal
 const esEscritorio = () => window.matchMedia("(min-width: 992px)").matches;
 
 if (navIndicator && menuLista && enlacesMenu.length > 0) {
@@ -135,7 +114,6 @@ if (navIndicator && menuLista && enlacesMenu.length > 0) {
   });
 }
 
-// ---------- 5) CONTADOR DE CARACTERES (evento input) ----------
 const mensaje = document.getElementById("mensaje");
 const mensajeContador = document.getElementById("mensajeContador");
 
@@ -146,15 +124,11 @@ if (mensaje && mensajeContador) {
   });
 }
 
-// ---------- 6) VALIDACIÓN DEL FORMULARIO ----------
-
-// Objeto que centraliza expresiones y reglas de validación
 const reglas = {
   correo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   telefono: /^[0-9]{9}$/,
 };
 
-// Función pura: valida un campo de texto según su tipo (switch = estructura de control)
 function validarCampo(tipo, valor) {
   switch (tipo) {
     case "nombre":
@@ -172,7 +146,6 @@ function validarCampo(tipo, valor) {
   }
 }
 
-// Muestra u oculta el mensaje de error de un campo (manipulación del DOM)
 function marcarCampo(input, esValido) {
   if (esValido) {
     input.classList.remove("is-invalid");
@@ -188,16 +161,14 @@ const resultadoEnvio = document.getElementById("resultadoEnvio");
 
 if (formRegistro) {
   formRegistro.addEventListener("submit", function (evento) {
-    evento.preventDefault(); // evita el envío real: aquí se SIMULA
+    evento.preventDefault();
 
-    // Referencias a los campos
     const nombre = document.getElementById("nombre");
     const correo = document.getElementById("correo");
     const telefono = document.getElementById("telefono");
     const programa = document.getElementById("programa");
     const terminos = document.getElementById("terminos");
 
-    // Validación de cada campo, acumulando el resultado con AND lógico
     const nombreValido = validarCampo("nombre", nombre.value);
     const correoValido = validarCampo("correo", correo.value);
     const telefonoValido = validarCampo("telefono", telefono.value);
@@ -213,7 +184,6 @@ if (formRegistro) {
     const formularioValido =
       nombreValido && correoValido && telefonoValido && programaValido && terminosValido;
 
-    // Condicional if / else (estructura de control)
     if (!formularioValido) {
       resultadoEnvio.textContent =
         "Revisa los campos marcados en rojo antes de enviar el formulario.";
@@ -221,7 +191,6 @@ if (formRegistro) {
       return;
     }
 
-    // Construye el objeto con los datos, listo para enviar
     const datosFormulario = {
       nombre: nombre.value.trim(),
       correo: correo.value.trim(),
@@ -235,24 +204,15 @@ if (formRegistro) {
   });
 }
 
-// ---------- 7) SIMULACIÓN DE ENVÍO GET / POST ----------
-// En un backend real, este formulario enviaría los datos con method="POST"
-// a un endpoint del servidor. Aquí se simula esa llamada con fetch() para
-// mostrar cómo cambiaría la solicitud según el método usado.
 function enviarRegistro(datos) {
-  const metodo = "POST"; // el caso práctico permite simular GET o POST; se eligió POST
-                          // porque el formulario envía datos sensibles de contacto
+  const metodo = "POST";
 
-  // Simulación de una petición POST: los datos viajan en el "body",
-  // no quedan expuestos en la URL como ocurriría con GET.
   console.log(`Simulando solicitud ${metodo} → /api/registro`);
   console.log("Cuerpo de la solicitud (JSON):", JSON.stringify(datos, null, 2));
 
-  // Si se quisiera simular GET, los mismos datos viajarían así en la URL:
   const queryGET = new URLSearchParams(datos).toString();
   console.log(`Equivalente por GET sería: /api/registro?${queryGET}`);
 
-  // Simula la latencia de red con setTimeout antes de confirmar al usuario
   const btnEnviar = document.getElementById("btnEnviar");
   btnEnviar.disabled = true;
   btnEnviar.textContent = "Enviando...";

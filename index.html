@@ -6,28 +6,20 @@
   <title>NovaTech | Instituto Superior de Tecnología</title>
   <meta name="description" content="Instituto Superior NovaTech: programas técnicos en tecnología, redes e industria. Regístrate y da el siguiente paso.">
 
-  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fruktur&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5 (framework CSS requerido por el caso práctico) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Hoja de estilos EXTERNA propia -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Hoja de estilos INTERNA: ajustes puntuales de esta página que no requieren
-       vivir en el archivo externo (ver justificación en el informe técnico) -->
   <style>
-    /* Ajuste específico de esta vista: separación del ancla del menú fijo */
     section[id] { scroll-margin-top: 84px; }
-    /* Contador de caracteres del mensaje del formulario, solo se usa aquí */
     #mensajeContador { font-size: 0.8rem; color: var(--color-muted); }
   </style>
 </head>
 <body>
 
-  <!-- ===================== HEADER / NAV ===================== -->
   <header class="site-header">
     <nav class="navbar navbar-expand-lg" aria-label="Navegación principal">
       <div class="container nav-inner">
@@ -55,7 +47,6 @@
   </header>
 
   <main>
-    <!-- ===================== HERO ===================== -->
     <section id="inicio" class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -107,13 +98,11 @@
       </div>
     </section>
 
-    <!-- ===================== NOSOTROS / POR QUÉ (Flexbox) ===================== -->
     <section id="nosotros" class="why">
       <div class="container">
         <h2 class="section-title">¿Por qué estudiar en NovaTech?</h2>
         <p class="section-subtitle">Cuatro razones que nuestros propios egresados repiten más.</p>
 
-        <!-- Requisito: Flexbox en al menos una sección -->
         <div class="why-flex">
           <article class="why-item">
             <span class="why-logo" aria-hidden="true">
@@ -162,16 +151,11 @@
       </div>
     </section>
 
-    <!-- ===================== PROGRAMAS (Grid + Bootstrap cards) ===================== -->
     <section id="programas" class="programas">
       <div class="container">
         <h2 class="section-title">Nuestros programas</h2>
         <p class="section-subtitle">Elige la carrera técnica que se acerca a lo que ya te interesa.</p>
 
-        <!-- Requisito: CSS Grid en al menos una sección.
-             Estas 4 tarjetas son contenido base en HTML; script.js las
-             reemplaza dinámicamente recorriendo el array "programas"
-             (demuestra manipulación del DOM sin depender solo de JS). -->
         <div class="programas-grid" id="programasGrid">
           <article class="programa-card">
             <span class="programa-logo" aria-hidden="true">
@@ -232,7 +216,6 @@
       </div>
     </section>
 
-    <!-- ===================== TESTIMONIO ===================== -->
     <section class="testimonio">
       <div class="container testimonio-inner">
         <blockquote>
@@ -243,7 +226,6 @@
       </div>
     </section>
 
-    <!-- ===================== REGISTRO ===================== -->
     <section id="registro" class="registro">
       <div class="container registro-grid">
         <div class="registro-intro">
@@ -319,7 +301,6 @@
     </section>
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
   <footer id="contacto" class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -351,9 +332,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS bundle -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-  <!-- Script propio -->
   <script src="js/script.js"></script>
 </body>
 </html>
