@@ -9,7 +9,7 @@
   --radius-base: 10px;
   --shadow-card: 0 10px 30px rgba(63, 23, 100, 0.16);
   --font-display: "Fruktur", cursive;
-  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-body: "Montserrat", "Segoe UI", sans-serif;
   --gradient-brand: linear-gradient(100deg, var(--color-amber) 0%, #f0cf86 45%, var(--color-teal) 100%);
 }
 
