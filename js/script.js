@@ -78,11 +78,23 @@ document.addEventListener("DOMContentLoaded", () => {
 const menuToggle = document.getElementById("menuToggle");
 const menuPrincipal = document.getElementById("menuPrincipal");
 
+function cerrarMenu() {
+  menuAbierto = false;
+  menuPrincipal.classList.remove("show");
+  menuToggle.setAttribute("aria-expanded", "false");
+}
+
 if (menuToggle && menuPrincipal) {
   menuToggle.addEventListener("click", () => {
     menuAbierto = !menuAbierto;
     menuPrincipal.classList.toggle("show", menuAbierto);
     menuToggle.setAttribute("aria-expanded", String(menuAbierto));
+  });
+
+  menuPrincipal.querySelectorAll(".nav-link").forEach((enlace) => {
+    enlace.addEventListener("click", () => {
+      if (menuAbierto) cerrarMenu();
+    });
   });
 }
 
