@@ -1,5 +1,6 @@
 const programas = [
   {
+    slug: "desarrollo-software",
     nombre: "Desarrollo de Software",
     duracion: "6 semestres",
     modalidad: "Presencial / mixta",
@@ -7,6 +8,7 @@ const programas = [
     icono: '<path d="m9 8-4 4 4 4"></path><path d="m15 8 4 4-4 4"></path>',
   },
   {
+    slug: "redes-telecomunicaciones",
     nombre: "Redes y Telecomunicaciones",
     duracion: "5 semestres",
     modalidad: "Presencial",
@@ -17,6 +19,7 @@ const programas = [
       '<path d="M17.1 7.3 13.6 16.4"></path><path d="M7.2 6h9.6"></path>',
   },
   {
+    slug: "administracion-empresas",
     nombre: "Administración de Empresas",
     duracion: "5 semestres",
     modalidad: "Presencial / mixta",
@@ -28,6 +31,7 @@ const programas = [
       '<rect x="17" y="6" width="2.6" height="13"></rect>',
   },
   {
+    slug: "mecatronica-industrial",
     nombre: "Mecatrónica Industrial",
     duracion: "6 semestres",
     modalidad: "Presencial",
@@ -41,6 +45,10 @@ const programas = [
 let menuAbierto = false;
 
 const crearTarjetaPrograma = (programa) => {
+  const enlace = document.createElement("a");
+  enlace.className = "programa-card-link";
+  enlace.href = `programas/${programa.slug}.html`;
+
   const card = document.createElement("article");
   card.className = "programa-card";
   card.innerHTML = `
@@ -53,8 +61,15 @@ const crearTarjetaPrograma = (programa) => {
     <h3>${programa.nombre}</h3>
     <p>${programa.descripcion}</p>
     <p class="programa-duracion">${programa.duracion}</p>
+    <span class="programa-ver">
+      Ver programa
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path>
+      </svg>
+    </span>
   `;
-  return card;
+  enlace.appendChild(card);
+  return enlace;
 };
 
 function renderizarProgramas() {
