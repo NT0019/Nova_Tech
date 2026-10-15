@@ -61,6 +61,19 @@ a { color: inherit; text-decoration: none; }
   border-radius: 8px;
   font-weight: 600;
 }
+/* Variante para usar sobre fondos claros (blanco/crema), donde btn-outline-light es invisible */
+.btn-outline-brand {
+  border-radius: 8px;
+  font-weight: 600;
+  border: 2px solid var(--color-navy);
+  color: var(--color-navy);
+  background: transparent;
+}
+.btn-outline-brand:hover, .btn-outline-brand:focus {
+  background: var(--color-navy);
+  color: #fff;
+  border-color: var(--color-navy);
+}
 
 .site-header {
   position: sticky;
@@ -693,6 +706,7 @@ a, button, .btn, input, select, textarea {
   display: grid;
   gap: 10px;
 }
+.malla-link { margin-bottom: 0.5em; }
 .lista-check li {
   display: flex;
   align-items: flex-start;
@@ -787,4 +801,117 @@ a, button, .btn, input, select, textarea {
 @media (max-width: 900px) {
   .programa-detalle-grid { grid-template-columns: 1fr; }
   .programa-sidebar { position: static; }
+}
+
+/* ===== Malla curricular (páginas por semestre) ===== */
+.malla-hero {
+  background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-soft) 100%);
+  color: #fff;
+  padding: 36px 0 56px;
+}
+.malla-hero h1 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); max-width: 28ch; }
+.malla-hero p { color: #c7cfdb; max-width: 60ch; margin-bottom: 0; }
+.malla-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+
+.malla { padding: 60px 0 80px; background: #fff; }
+
+.malla-timeline {
+  position: relative;
+  display: grid;
+  gap: 28px;
+}
+.malla-timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 27px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-amber), var(--color-teal));
+  opacity: 0.35;
+}
+@media (max-width: 640px) {
+  .malla-timeline::before { display: none; }
+}
+
+.malla-semestre {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+.malla-semestre-num {
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-navy);
+  color: var(--color-amber);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px #fff, 0 8px 18px rgba(63, 23, 100, 0.22);
+}
+.malla-semestre-card {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 20px;
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius-base);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.malla-semestre-card:hover { border-color: var(--color-amber); transform: translateY(-3px); }
+.malla-semestre-visual {
+  border-radius: 10px;
+  min-height: 130px;
+  background: linear-gradient(155deg, var(--color-navy) 0%, var(--color-navy-soft) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-amber);
+}
+.malla-semestre-visual svg { width: 42px; height: 42px; }
+.malla-semestre-info h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.malla-semestre-info .malla-enfoque {
+  color: var(--color-teal);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.malla-cursos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.malla-cursos li {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  padding-left: 18px;
+  position: relative;
+}
+.malla-cursos li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-amber);
+}
+
+@media (max-width: 640px) {
+  .malla-semestre { grid-template-columns: 1fr; }
+  .malla-semestre-num { width: 42px; height: 42px; font-size: 0.95rem; }
+  .malla-semestre-card { grid-template-columns: 1fr; }
+  .malla-semestre-visual { min-height: 100px; }
 }
