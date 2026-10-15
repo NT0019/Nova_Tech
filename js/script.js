@@ -45,31 +45,36 @@ const programas = [
 let menuAbierto = false;
 
 const crearTarjetaPrograma = (programa) => {
-  const enlace = document.createElement("a");
-  enlace.className = "programa-card-link";
-  enlace.href = `programas/${programa.slug}.html`;
-
   const card = document.createElement("article");
   card.className = "programa-card";
   card.innerHTML = `
-    <span class="programa-logo" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        ${programa.icono}
-      </svg>
-    </span>
-    <span class="programa-badge">${programa.modalidad}</span>
-    <h3>${programa.nombre}</h3>
-    <p>${programa.descripcion}</p>
-    <p class="programa-duracion">${programa.duracion}</p>
-    <span class="programa-ver">
-      Ver programa
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path>
-      </svg>
-    </span>
+    <a class="programa-card-top" href="programas/${programa.slug}.html">
+      <span class="programa-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          ${programa.icono}
+        </svg>
+      </span>
+      <span class="programa-badge">${programa.modalidad}</span>
+      <h3>${programa.nombre}</h3>
+      <p>${programa.descripcion}</p>
+      <p class="programa-duracion">${programa.duracion}</p>
+    </a>
+    <div class="programa-acciones">
+      <a class="programa-accion-link" href="programas/${programa.slug}.html">
+        Ver programa
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path>
+        </svg>
+      </a>
+      <a class="programa-accion-link accion-malla" href="programas/malla-${programa.slug}.html">
+        Malla curricular
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
   `;
-  enlace.appendChild(card);
-  return enlace;
+  return card;
 };
 
 function renderizarProgramas() {
