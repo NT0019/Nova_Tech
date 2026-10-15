@@ -220,11 +220,14 @@ a { color: inherit; text-decoration: none; }
 
 .hero-visual {
   position: relative;
-  min-height: 280px;
+  min-height: 360px;
 }
 .hero-shape {
   position: absolute;
-  inset: 20px 10% 0 10%;
+  top: 20px;
+  left: 10%;
+  right: 10%;
+  bottom: 20px;
   background: linear-gradient(160deg, rgba(231, 182, 74, 0.16), rgba(231, 182, 74, 0.05));
   border: 1px solid rgba(231, 182, 74, 0.35);
   border-radius: 18px;
@@ -234,6 +237,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   gap: 20px;
   padding: 28px;
+  overflow: visible;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 .hero-shape:hover {
@@ -299,6 +303,38 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 0 0 1px rgba(231, 182, 74, 0.3) inset, 0 6px 14px rgba(231, 182, 74, 0.25);
 }
 .hero-card-icon svg { width: 19px; height: 19px; }
+
+.hero-card-countdown { max-width: 300px; }
+.hero-card-countdown strong { padding-right: 0; margin-bottom: 14px; }
+.hero-countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.hero-countdown-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 4px;
+  text-align: center;
+}
+.hero-countdown-valor {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-amber);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.hero-countdown-etiqueta {
+  display: block;
+  font-size: 0.62rem;
+  color: #93a0b4;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .hero-card { animation: none; }
@@ -562,7 +598,8 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 900px) {
   .hero-grid, .registro-grid { grid-template-columns: 1fr; }
-  .hero-visual { min-height: 200px; margin-top: 20px; }
+  .hero-visual { min-height: 0; margin-top: 24px; }
+  .hero-shape { position: static; inset: auto; padding: 20px; }
   .footer-grid { grid-template-columns: 1fr; }
 }
 

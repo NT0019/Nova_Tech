@@ -88,8 +88,50 @@ function renderizarProgramas() {
   }
 }
 
+function iniciarContadorInicioClases() {
+  const contenedor = document.getElementById("contadorInicio");
+  if (!contenedor) return;
+
+  const fechaObjetivo = new Date(contenedor.dataset.fecha).getTime();
+  const elDias = document.getElementById("cdDias");
+  const elHoras = document.getElementById("cdHoras");
+  const elMin = document.getElementById("cdMin");
+  const elSeg = document.getElementById("cdSeg");
+
+  const dosDigitos = (n) => String(n).padStart(2, "0");
+
+  function actualizar() {
+    const ahora = Date.now();
+    const restante = fechaObjetivo - ahora;
+
+    if (restante <= 0) {
+      elDias.textContent = "00";
+      elHoras.textContent = "00";
+      elMin.textContent = "00";
+      elSeg.textContent = "00";
+      clearInterval(intervalo);
+      return;
+    }
+
+    const segTotales = Math.floor(restante / 1000);
+    const dias = Math.floor(segTotales / 86400);
+    const horas = Math.floor((segTotales % 86400) / 3600);
+    const minutos = Math.floor((segTotales % 3600) / 60);
+    const segundos = segTotales % 60;
+
+    elDias.textContent = dosDigitos(dias);
+    elHoras.textContent = dosDigitos(horas);
+    elMin.textContent = dosDigitos(minutos);
+    elSeg.textContent = dosDigitos(segundos);
+  }
+
+  actualizar();
+  const intervalo = setInterval(actualizar, 1000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderizarProgramas();
+  iniciarContadorInicioClases();
 
   const anio = document.getElementById("anioActual");
   if (anio) anio.textContent = new Date().getFullYear();
